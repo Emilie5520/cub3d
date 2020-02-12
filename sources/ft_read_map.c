@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/06 18:34:51 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:06:40 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_delete_space(char *str)
 			j++;
 		i++;
 	}
-	tmp = (char *)malloc(sizeof(char) * j + 1);
+	tmp = (char *)malloc(sizeof(char) * (j + 1));
 	if (tmp == NULL)
 		return (NULL);
 	i = 0;
@@ -45,7 +45,8 @@ char	*ft_delete_space(char *str)
 
 void	ft_recup_map(char *line, t_env *e)
 {
-	if (e->map.buff == NULL)
+	e->raycasting.y++;
+	if (!e->map.buff)
 		e->map.buff = ft_strdup("");
 	else 
 		e->map.buff = ft_strjoin(e->map.buff, "\n", 1);
@@ -65,8 +66,6 @@ void	ft_recup_map_2(t_env *e)
 	{
 		e->raycasting.x = i++;
 	}
-	while (e->map.tab_map[j])
-		e->raycasting.y = j++;
 }
 
 void	ft_pos_perso(t_env *e)
@@ -82,7 +81,7 @@ void	ft_pos_perso(t_env *e)
 		{
 			if (e->map.tab_map[i][j] != '1' && e->map.tab_map[i][j] != '0'&&
 					e->map.tab_map[i][j] != '2' && (ft_is_orientation(e, i, j) == 0))
-				printf("%s\n", "ERROR"); //Ajouter un cas ERROR
+				printf("%s\n", "ERROR");
 			if ((ft_is_orientation(e, i, j) == 1))
 			{
 				e->map.pos_n_x = j + 0.5;

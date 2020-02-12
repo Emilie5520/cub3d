@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 12:54:07 by edouvier          #+#    #+#             */
-/*   Updated: 2019/10/21 11:10:47 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:06:44 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**ft_split(char const *s, char c)
 	str = (char *)s;
 	if (s == NULL)
 		return (NULL);
-	res = (char **)malloc(sizeof(char *) * count_words(str, c) + 1);
+	res = (char **)malloc(sizeof(char *) * (count_words(str, c) + 1));
 	if (res == NULL)
 		return (NULL);
 	while (i < count_words(str, c))

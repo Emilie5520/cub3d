@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:40:15 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/10 14:30:22 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:05:02 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,43 +27,43 @@ void	ft_parsing_line(t_env *e, char *line)
 		e->identifiants.R = 1;
 		ft_recup_axes(e, line);
 	}
-	if (line[i] == 'N' && line[i + 1] == 'O')
+	else if (line[i] == 'N' && line[i + 1] == 'O')
 	{
 		e->identifiants.NO = 1;
 		e->root_textures.north = ft_recup_root(line);
 	}
-	if (line[i] == 'S' && line[i + 1] == 'O')
+	else if (line[i] == 'S' && line[i + 1] == 'O')
 	{
 		e->identifiants.SO = 1;
 		e->root_textures.south = ft_recup_root(line);
 	}
-	if (line[i] == 'W' && line[i + 1] == 'E')
+	else if (line[i] == 'W' && line[i + 1] == 'E')
 	{
 		e->identifiants.WE = 1;
 		e->root_textures.west = ft_recup_root(line);
 
 	}
-	if (line[i] == 'E' && line[i + 1] == 'A')
+	else	if (line[i] == 'E' && line[i + 1] == 'A')
 	{
 		e->identifiants.EA = 1;
 		e->root_textures.east = ft_recup_root(line);
 	}
-	if (line[i] == 'S')
+	else	if (line[i] == 'S')
 	{
 		e->identifiants.S = 1;
 		e->root_textures.sprite = ft_recup_root(line);
 	}
-	if (line[i] == 'F')
+	else	if (line[i] == 'F')
 	{
 		e->identifiants.F = 1;
 		e->colors.color_sol = ft_recup_color(line);
 	}
-	if (line[i] == 'C')
+	else	if (line[i] == 'C')
 	{
 		e->identifiants.C = 1;
 		e->colors.color_plafond = ft_recup_color(line);
 	}
-	if (line[i] == '1' || line[i] == '0')
+	else	if (line[i] == '1' || line[i] == '0')
 	{
 		ft_recup_map(line, e);
 	}

@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/12 17:52:26 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:20:44 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "mlx.h"
 # include <unistd.h>
+# include "mlx.h"
 # include <math.h>
 
 typedef struct		s_identifiants
@@ -131,7 +131,7 @@ typedef struct 		s_textures
 	int 	h;
 }		      	t_textures;
 
-typedef struct		s_t_env
+typedef struct		s_env
 {
 	t_identifiants	identifiants;
 	t_axes		axes;
@@ -149,20 +149,19 @@ typedef struct		s_t_env
 	t_textures 		texture_west;
 }			t_env;
 
-void	ft_initialize_parsing(t_env *t_env);
-void	ft_parsing_line(t_env *t_env, char *line);
-int		ft_read_map(char **argv, t_env *t_env);
-int		main(int argc, char **argv);
-void	ft_recup_axes(t_env *t_env, char *line);
+void	ft_initialize_parsing(t_env *e);
+void	ft_parsing_line(t_env *e, char *line);
+int	ft_read_map(char **argv, t_env *e);
+void	ft_recup_axes(t_env *e, char *line);
 char	*ft_recup_root(char *line);
-int		ft_recup_color(char *line);
-void	ft_recup_map(char *line, t_env *t_env);
-void	ft_open_window(t_env *t_env);
-void	ft_recup_map_2(t_env *t_env);
-void	ft_pos_perso(t_env *t_env);
-void	ft_orientation_perso(t_env *t_env);
-int		ft_is_orientation(t_env *t_env, int i, int j);
-void	ft_raycasting(t_env *t_env);
+int	ft_recup_color(char *line);
+void	ft_recup_map(char *line, t_env *e);
+void	ft_open_window(t_env *e);
+void	ft_recup_map_2(t_env *e);
+void	ft_pos_perso(t_env *e);
+void	ft_orientation_perso(t_env *e);
+int	ft_is_orientation(t_env *e, int i, int j);
+void	ft_raycasting(t_env *e);
 int 	ft_deplacement(t_env *e);
 int	ft_key_up(int keycode, t_env *e);
 int	ft_key_down(int keycode, t_env *e);

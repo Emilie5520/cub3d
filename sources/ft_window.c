@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:29 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/11 13:28:46 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:58:08 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,12 @@ void	ft_raycasting(t_env *e)
 	x++;
 	}
 }
+int	ft_exit(t_env *e)
+{
+	(void)e;
+	exit(0);
+	return (0);
+}
 
 void	ft_init_image(t_env *e)
 {
@@ -136,8 +142,9 @@ void	ft_open_window(t_env *e)
 	ft_textures(e);
 	ft_init_image(e);
 	mlx_do_key_autorepeatoff(e->mlx.ptr);
-	mlx_hook(e->mlx.win_ptr, 2, (1L << 0), &ft_key_down, e);
-	mlx_hook(e->mlx.win_ptr, 3, (1L << 1), &ft_key_up, e);
+	mlx_hook(e->mlx.win_ptr, 2, 0, &ft_key_down, e);
+	mlx_hook(e->mlx.win_ptr, 3, 0, &ft_key_up, e);
+	mlx_hook(e->mlx.win_ptr, 17, 0, &ft_exit, e);
 	mlx_loop_hook(e->mlx.ptr, &ft_deplacement, e);
 	mlx_loop(e->mlx.ptr);
 }
