@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:18:14 by edouvier          #+#    #+#             */
-/*   Updated: 2020/01/29 17:32:57 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:54:08 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 		void (*del)(void *));
 int				get_next_line(int fd, char **line);
 char				*ft_strjoin_free(char *s1, char *s2);
+float				ft_power(float nb, int power);
+void				ft_swap(int *a, int *b);
+
 #endif

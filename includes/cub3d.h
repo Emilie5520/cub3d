@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/13 12:43:49 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:48:42 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct 		s_map
 	int	hauteur_line;
 	int	draw_start;
 	int	draw_end;
+	int	nbr_sprite;
 }      			t_map;
 
 typedef struct		s_orientation
@@ -142,6 +143,19 @@ typedef struct		s_bmp
 	int		fd;	
 }			t_bmp;
 
+typedef	struct		s_coord
+{
+	int	x;
+	int	y;
+}			t_coord;
+
+typedef struct 		s_sprite
+{
+	int		sprite_order;
+	double		sprite_distance;
+	t_coord		coord;
+}			t_sprite;
+
 typedef struct		s_env
 {
 	t_identifiants	identifiants;
@@ -158,6 +172,7 @@ typedef struct		s_env
 	t_textures 		texture_south;
 	t_textures 		texture_east;
 	t_textures 		texture_west;
+	t_sprite		*sprite;
 }			t_env;
 
 void	ft_initialize_parsing(t_env *e);
@@ -185,5 +200,7 @@ void	ft_put_textures(t_env *e, int x);
 void	ft_bmp(t_env *e);
 void	ft_complete_header(t_env *e, t_bmp *bmp);
 int	ft_exit(t_env *e);
+void	ft_sprite_distance(t_env *e);
+void	ft_swap_sprite(t_env *e);
 
 #endif
