@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:49:19 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/10 14:50:18 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/13 13:52:12 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/cub3d.h"
@@ -52,9 +52,6 @@ void	ft_put_textures(t_env *e, int x)
 	int 	y;
 	t_textures 	texture_wall;
 	
-	printf("pos_x %f\n", e->map.pos_n_x);
-	printf("pos_y %f\n", e->map.pos_n_y);
-	printf("texture %d\n", texture_wall.w);
 	texture_wall = ft_texture_wall(e);
 	if (e->raycasting.side == 0)
 		wall_x = e->map.pos_n_y + e->raycasting.perp_wall_dist * e->map.ray_dir_y;

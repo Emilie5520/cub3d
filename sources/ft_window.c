@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:29 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/12 20:58:08 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/13 13:47:43 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,6 @@ void	ft_raycasting(t_env *e)
 		ft_sol_plafond(e, x, y);
 	x++;
 	}
-}
-int	ft_exit(t_env *e)
-{
-	(void)e;
-	exit(0);
-	return (0);
 }
 
 void	ft_init_image(t_env *e)

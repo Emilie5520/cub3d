@@ -16,6 +16,7 @@ SRC =  sources/main.c \
 	sources/ft_orientation.c \
 	sources/ft_deplacements.c \
 	sources/ft_textures.c \
+	sources/ft_bmp.c \
 
 OBJ = $(SRC:%.c=%.o)
 

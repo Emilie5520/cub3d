@@ -1,12 +1,12 @@
 R 620 680
-NO ./textures/north_test.xpm
-SO ./textures/wall_south.xpm
-WE ./textures/wall_west.xpm
-EA ./textures/wall_east.xpm
+NO ./textures/wall_north.xpm
+SO ./textures/unnamed.xpm
+WE ./textures/wall_south.xpm
+EA ./textures/wall_west.xpm
 S ./path_to_the_sprite_texture
 
 F 255,255,255
-C 0,0,0
+C 0, 0, 0
 
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1

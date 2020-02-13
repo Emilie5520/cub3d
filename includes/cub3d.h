@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/12 20:20:44 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/13 12:43:49 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,17 @@ typedef struct 		s_textures
 	int 	h;
 }		      	t_textures;
 
+typedef struct		s_bmp
+{
+	int		size;
+	char		*image;
+	unsigned char	header[14];
+	unsigned char	info[40];
+	unsigned char	pad[3];
+	int		color;
+	int		fd;	
+}			t_bmp;
+
 typedef struct		s_env
 {
 	t_identifiants	identifiants;
@@ -171,5 +182,8 @@ void	ft_colonne(t_env *e, int x);
 void	ft_color_wall(t_env *e);
 void	ft_textures(t_env *e);
 void	ft_put_textures(t_env *e, int x);
+void	ft_bmp(t_env *e);
+void	ft_complete_header(t_env *e, t_bmp *bmp);
+int	ft_exit(t_env *e);
 
 #endif
