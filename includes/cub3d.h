@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 18:59:50 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 20:47:08 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include "mlx.h"
 # include <math.h>
-# include "error.h"
 
 typedef struct		s_identifiants
 {

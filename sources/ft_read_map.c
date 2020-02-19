@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 17:45:47 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 21:35:15 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void	ft_pos_perso(t_env *e)
 			if (e->map.tab_map[i][j] != '1' && e->map.tab_map[i][j] != '0' &&
 				e->map.tab_map[i][j] != '2' &&
 				(ft_is_orientation(e, i, j) == 0))
-				printf("%s\n", "ERROR");
+			{
+				printf("Error\nonly 1, 2, 0, or S,N,W,E");
+				ft_exit(e);
+			}
 			if (e->map.tab_map[i][j] == '2')
 				e->map.nbr_sprite += 1;
 			if ((ft_is_orientation(e, i, j) == 1))

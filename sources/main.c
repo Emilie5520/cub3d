@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:21 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 18:14:55 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 21:32:45 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,22 @@
 
 void	ft_init_image(t_env *e)
 {
-	e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->axes.axe_x, e->axes.axe_y);
-	e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
-			&e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian);
-	e->spt.dist_wall = ft_calloc(sizeof(double), e->axes.axe_x);
+	if (!(e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->axes.axe_x, e->axes.axe_y)))
+	{
+		printf("Error\nmlx_new_image");
+		ft_exit(e);
+	}
+	if (!(e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
+			&e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian)))
+	{
+		printf("Error\nmlx_get_data_addr");
+		ft_exit(e);
+	}
+	if (!(e->spt.dist_wall = ft_calloc(sizeof(double), e->axes.axe_x)))
+	{
+		printf("Error\nMalloc e->spt.dist_wall");
+		ft_exit(e);
+	}
 	ft_raycasting(e);
 	ft_sprite(e);
 	mlx_put_image_to_window(e->mlx.ptr, e->mlx.win_ptr,
@@ -27,9 +39,17 @@ void	ft_init_image(t_env *e)
 
 void	ft_open_window(t_env *e)
 {
-	e->mlx.ptr = mlx_init();
-	e->mlx.win_ptr = mlx_new_window(e->mlx.ptr, e->axes.axe_x,
-			e->axes.axe_y, "Cub3d");
+	if (!(e->mlx.ptr = mlx_init()))
+	{
+		printf("Error\nmlx_init");
+		ft_exit(e);
+	}
+	if (!(e->mlx.win_ptr = mlx_new_window(e->mlx.ptr, e->axes.axe_x,
+			e->axes.axe_y, "Cub3d")))
+	{
+		printf("Error\nmlx_new_window");
+		ft_exit(e);
+	}
 	ft_textures(e);
 	ft_init_sprite(e);
 	ft_init_image(e);
@@ -72,14 +92,29 @@ void	ft_push_bmp(t_env *e)
 int		main(int argc, char **argv)
 {
 	t_env	e;
+	int	len;
 
-	(void)argc;
+	if (argc < 2 || argc > 2)
+	{
+		printf("Error\nargc");
+		ft_exit(&e);
+	}
+	len = (ft_strlen(argv[1]) - 4);
 	ft_initialize_parsing(&e);
 	ft_read_map(argv, &e);
 	//ft_check_wall(&e);
 	ft_check_resolution(&e);
 	if (argv[2] && !ft_strncmp(argv[2], "--save", 6))
 		ft_push_bmp(&e);
-	e.sprite = (t_sprite*)ft_calloc(sizeof(t_sprite), e.map.nbr_sprite);
+	if (!argv[1] || (ft_strncmp(argv[1] + len, ".cub", 4)))
+	{
+		printf("Error\nNo map or no file .cub");
+		ft_exit(&e);
+	}
+	if (!(e.sprite = (t_sprite*)ft_calloc(sizeof(t_sprite), e.map.nbr_sprite)))
+	{
+		printf("Error\nMalloc sprite");
+		ft_exit(&e);
+	}
 	ft_open_window(&e);
 }
