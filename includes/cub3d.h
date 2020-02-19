@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 11:09:16 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:16:55 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "mlx.h"
 # include <math.h>
+# include "error.h"
 
 typedef struct		s_identifiants
 {
@@ -229,5 +230,6 @@ void		ft_sprite_distance(t_env *e);
 void		ft_swap_sprite(t_env *e);
 void		ft_sprite(t_env *e);
 void		ft_init_sprite(t_env *e);
+void		ft_check_wall(t_env *e);
 
 #endif

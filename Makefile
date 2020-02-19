@@ -16,6 +16,7 @@ SRC =  sources/main.c \
 	sources/ft_bmp.c \
 	sources/ft_sprite.c \
 	sources/ft_utils.c \
+	sources/ft_check_error.c \
 
 OBJ = $(SRC:%.c=%.o)
 

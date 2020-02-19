@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:21 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 11:14:24 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 13:15:19 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		main(int argc, char **argv)
 	(void)argc;
 	ft_initialize_parsing(&e);
 	ft_read_map(argv, &e);
+	//ft_check_wall(&e);
 	if (argv[2] && !ft_strncmp(argv[2], "--save", 6))
 		ft_push_bmp(&e);
 	e.sprite = (t_sprite*)ft_calloc(sizeof(t_sprite), e.map.nbr_sprite);

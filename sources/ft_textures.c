@@ -6,13 +6,13 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:49:19 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 11:23:37 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:30:21 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_textures		ft_info_texture(char *root_texture, t_env *e)
+t_textures	ft_info_texture(char *root_texture, t_env *e)
 {
 	t_textures	texture;
 
@@ -24,7 +24,7 @@ t_textures		ft_info_texture(char *root_texture, t_env *e)
 	return (texture);
 }
 
-t_mlx		ft_info_sprite(char *root_texture, t_env *e)
+t_mlx	ft_info_sprite(char *root_texture, t_env *e)
 {
 	t_mlx	texture;
 
@@ -37,7 +37,7 @@ t_mlx		ft_info_sprite(char *root_texture, t_env *e)
 
 void	ft_textures(t_env *e)
 {
-	int 	i;
+	int		i;
 	char	*tmp;
 
 	i = 0;
@@ -54,8 +54,10 @@ void	ft_textures(t_env *e)
 
 t_textures	ft_texture_wall(t_env *e)
 {
-	if (e->raycasting.side == 0 && e->map.ray_dir_x > 0) 
+	if (e->raycasting.side == 0 && e->map.ray_dir_x > 0)
+	{
 		return (e->texture_north);
+	}
 	else if (e->raycasting.side == 0 && e->map.ray_dir_x < 0)
 		return (e->texture_south);
 	else if (e->raycasting.side == 1 && e->map.ray_dir_y > 0)
@@ -67,10 +69,10 @@ t_textures	ft_texture_wall(t_env *e)
 void	ft_put_textures(t_env *e, int x)
 {
 	double	wall_x;
-	int		tex_x;
-	int		tex_y;
-	int		y;
-	t_textures 		texture_wall;
+	int	tex_x;
+	int	tex_y;
+	int	y;
+	t_textures	texture_wall;
 
 	texture_wall = ft_texture_wall(e);
 	if (e->raycasting.side == 0)
