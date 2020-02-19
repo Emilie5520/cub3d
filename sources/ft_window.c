@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:29 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 11:30:34 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 17:23:08 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_init_raycasting(t_env *e, int x)
 	e->map.camera_x = 2 * x / (double)(e->axes.axe_x) - 1;
 	e->map.ray_dir_x = e->orientation.dir_x + e->map.plan_x * e->map.camera_x;
 	e->map.ray_dir_y = e->orientation.dir_y + e->map.plan_y * e->map.camera_x;
-	e->raycasting.delta_x = fabs(1 / e->map.ray_dir_x);
-	e->raycasting.delta_y = fabs(1 / e->map.ray_dir_y);
+	e->raycasting.delta_x = fabs(1.0 / e->map.ray_dir_x);
+	e->raycasting.delta_y = fabs(1.0 / e->map.ray_dir_y);
 	e->raycasting.map_x = (int)e->map.pos_n_x;
 	e->raycasting.map_y = (int)e->map.pos_n_y;
 }
@@ -51,8 +51,11 @@ void	ft_raycasting_first(t_env *e)
 	}
 }
 
-void	ft_no_wall(int hit, t_env *e)
+void	ft_no_wall(t_env *e)
 {
+	int	hit;
+
+	hit = 0;
 	while (hit == 0)
 	{
 		if (e->raycasting.side_dist_x < e->raycasting.side_dist_y)
@@ -98,18 +101,15 @@ void	ft_colonne(t_env *e, int x, int y)
 void	ft_raycasting(t_env *e)
 {
 	int	x;
-	int	hit;
 	int	y;
 
 	x = 0;
-	hit = 0;
 	y = 0;
 	while (x < e->axes.axe_x)
 	{
 		ft_init_raycasting(e, x);
 		ft_raycasting_first(e);
-		hit = 0;
-		ft_no_wall(hit, e);
+		ft_no_wall(e);
 		if (e->raycasting.side == 0)
 			e->raycasting.perp_wall_dist = (e->raycasting.map_x - e->map.pos_n_x
 					+ (1 - e->raycasting.step_x) / 2) / e->map.ray_dir_x;
@@ -118,8 +118,6 @@ void	ft_raycasting(t_env *e)
 					+ (1 - e->raycasting.step_y) / 2) / e->map.ray_dir_y;
 		ft_color_wall(e);
 		ft_colonne(e, x, y);
-		printf("perp_wall_dist %f\n",e->raycasting.perp_wall_dist);
-		printf("dist_wall %f\n" ,e->spt.dist_wall[x]);
 		e->spt.dist_wall[x] = e->raycasting.perp_wall_dist;
 		x++;
 	}

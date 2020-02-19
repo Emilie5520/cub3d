@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:37:58 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 10:58:18 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 20:21:00 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void		ft_deplacement_left(t_env *e)
 {
 	if (e->mvt.left == 1)
 	{
-		if (e->map.tab_map[(int)(e->map.pos_n_y - e->map.plan_x * 0.2)]
-				[(int)(e->map.pos_n_x)] != '1')
-			e->map.pos_n_x -= e->map.plan_x * 0.2;
-		if (e->map.tab_map[(int)(e->map.pos_n_y)]
-				[(int)(e->map.pos_n_x - e->map.plan_y * 0.2)] != '1')
+		if ((e->map.tab_map[(int)(e->map.pos_n_y - e->map.plan_y * 0.2)]
+				[(int)(e->map.pos_n_x)] != '1') && (e->map.tab_map[(int)(e->map.pos_n_y
+					- e->map.plan_y * 0.2)]	[(int)(e->map.pos_n_x)] != '2'))
 			e->map.pos_n_y -= e->map.plan_y * 0.2;
+		if ((e->map.tab_map[(int)(e->map.pos_n_y)][(int)(e->map.pos_n_x - e->map.plan_x * 0.2)]
+					!= '1') && (e->map.tab_map[(int)(e->map.pos_n_y)][(int)(e->map.pos_n_x
+							- e->map.plan_x * 0.2)] != '2'))
+			e->map.pos_n_x -= e->map.plan_x * 0.2;
 	}
 	if (e->mvt.rot_left == 1)
 	{
@@ -55,11 +57,15 @@ void		ft_deplacement_right(t_env *e)
 	}
 	if (e->mvt.right == 1)
 	{
-		if (e->map.tab_map[(int)(e->map.pos_n_y + e->map.plan_x * 0.2)]
-				[(int)(e->map.pos_n_x)] != '1')
+		if ((e->map.tab_map[(int)(e->map.pos_n_y)][(int)(e->map.plan_x * 0.2 +
+					e->map.pos_n_x)] != '1') &&
+		 ((e->map.tab_map[(int)(e->map.pos_n_y)][(int)(e->map.plan_x * 0.2 +
+					e->map.pos_n_x)] != '2')))
 			e->map.pos_n_x += e->map.plan_x * 0.2;
-		if (e->map.tab_map[(int)(e->map.pos_n_y)]
-				[(int)(e->map.pos_n_x + e->map.plan_y * 0.2)] != '1')
+		if ((e->map.tab_map[(int)(e->map.pos_n_y + e->map.plan_y * 0.2)]
+				[(int)(e->map.pos_n_x)] != '1')
+				&& ((e->map.tab_map[(int)(e->map.pos_n_y + e->map.plan_y * 0.2)]
+					[(int)(e->map.pos_n_x)] != '2')))
 			e->map.pos_n_y += e->map.plan_y * 0.2;
 	}
 }
@@ -68,12 +74,16 @@ void		ft_deplacement_down(t_env *e)
 {
 	if (e->mvt.down == 1)
 	{
-		if (e->map.tab_map[(int)(e->map.pos_n_y - e->orientation.dir_x * 0.2)]
+		if ((e->map.tab_map[(int)(e->map.pos_n_y - e->orientation.dir_y * 0.2)]
 				[(int)(e->map.pos_n_x)] != '1')
-			e->map.pos_n_x -= e->orientation.dir_x * 0.2;
-		if (e->map.tab_map[(int)(e->map.pos_n_y)]
-				[(int)(e->map.pos_n_x - e->orientation.dir_y * 0.2)] != '1')
+		&& (e->map.tab_map[(int)(e->map.pos_n_y - e->orientation.dir_y * 0.2)]
+				[(int)(e->map.pos_n_x)] != '2'))
 			e->map.pos_n_y -= e->orientation.dir_y * 0.2;
+		if ((e->map.tab_map[(int)(e->map.pos_n_y)]
+				[(int)(e->map.pos_n_x - e->orientation.dir_x * 0.2)] != '1')
+		&& (e->map.tab_map[(int)(e->map.pos_n_y)]
+				[(int)(e->map.pos_n_x - e->orientation.dir_x * 0.2)] != '2'))
+			e->map.pos_n_x -= e->orientation.dir_x * 0.2;
 	}
 }
 
@@ -85,12 +95,16 @@ int		ft_deplacement(t_env *e)
 	e->mvt.vit_rot = 0.08;
 	if (e->mvt.up == 1)
 	{
-		if (e->map.tab_map[(int)(e->map.pos_n_y)]
+		if ((e->map.tab_map[(int)(e->map.pos_n_y)]
 				[(int)(e->map.pos_n_x + e->orientation.dir_x * 0.2)] != '1')
-			e->map.pos_n_x += e->orientation.dir_x * 0.1;
-		if (e->map.tab_map[(int)(e->map.pos_n_y + e->orientation.dir_y * 0.2)]
+		&& (e->map.tab_map[(int)(e->map.pos_n_y)]
+				[(int)(e->map.pos_n_x + e->orientation.dir_x * 0.2)] != '2'))
+			e->map.pos_n_x += e->orientation.dir_x * 0.2;
+		if ((e->map.tab_map[(int)(e->map.pos_n_y + e->orientation.dir_y * 0.2)]
 				[(int)(e->map.pos_n_x)] != '1')
-			e->map.pos_n_y += e->orientation.dir_y * 0.1;
+		&& (e->map.tab_map[(int)(e->map.pos_n_y + e->orientation.dir_y * 0.2)]
+				[(int)(e->map.pos_n_x)] != '2'))
+			e->map.pos_n_y += e->orientation.dir_y * 0.2;
 	}
 	ft_deplacement_down(e);
 	ft_deplacement_left(e);

@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 12:16:55 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:59:50 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,14 @@ typedef struct		s_bmp
 
 typedef	struct		s_coord
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 }					t_coord;
 
 typedef struct		s_sprite
 {
 	int		sprite_order;
-	int		sprite_distance;
+	double		sprite_distance;
 	t_coord	coord;
 	t_mlx	image;
 }					t_sprite;
@@ -168,15 +168,15 @@ typedef struct		s_spt
 	double	inv_det;
 	double	transform_x;
 	double	transform_y;
-	int		screen_x;
-	int		height;
-	int		start_y;
-	int		start_x;
-	int		end_y;
-	int		end_x;
-	int		width;
-	int		tex_x;
-	int		tex_y;
+	int	screen_x;
+	int	height;
+	int	start_y;
+	int	start_x;
+	int	end_y;
+	int	end_x;
+	int	width;
+	int	tex_x;
+	int	tex_y;
 	double	*dist_wall;
 
 }					t_spt;
@@ -218,7 +218,7 @@ int			ft_deplacement(t_env *e);
 int			ft_key_up(int keycode, t_env *e);
 int			ft_key_down(int keycode, t_env *e);
 void		ft_init_image(t_env *e);
-void		ft_no_wall(int hit, t_env *e);
+void		ft_no_wall(t_env *e);
 void		ft_colonne(t_env *e, int x, int y);
 void		ft_color_wall(t_env *e);
 void		ft_textures(t_env *e);
@@ -231,5 +231,6 @@ void		ft_swap_sprite(t_env *e);
 void		ft_sprite(t_env *e);
 void		ft_init_sprite(t_env *e);
 void		ft_check_wall(t_env *e);
+void		ft_check_resolution(t_env *e);
 
 #endif

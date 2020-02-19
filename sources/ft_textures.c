@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:49:19 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 11:30:21 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:29:57 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_textures(t_env *e)
 	int		i;
 	char	*tmp;
 
-	i = 0;
+	i = -1;
 	e->texture_north = ft_info_texture(e->root_textures.north, e);
 	e->texture_south = ft_info_texture(e->root_textures.south, e);
 	e->texture_east = ft_info_texture(e->root_textures.east, e);
@@ -83,7 +83,6 @@ void	ft_put_textures(t_env *e, int x)
 			e->raycasting.perp_wall_dist * e->map.ray_dir_x;
 	wall_x -= floor(wall_x);
 	tex_x = wall_x * (double)texture_wall.w;
-	printf("tex x %d\n", tex_x);
 	y = e->map.draw_start;
 	while (y < e->map.draw_end)
 	{

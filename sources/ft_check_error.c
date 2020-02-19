@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:08:51 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 13:15:35 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:48:50 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,12 @@ void	ft_check_wall(t_env *e)
 		i++;
 	}
 	ft_check_wall_next(e);
+}
+
+void	ft_check_resolution(t_env *e)
+{
+	if (e->axes.axe_x > 2560)
+		e->axes.axe_x = 2560;
+	if (e->axes.axe_y > 1440)
+		e->axes.axe_y = 1440;
 }
