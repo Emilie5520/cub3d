@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:03:52 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/13 17:54:02 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/17 11:36:20 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,113 @@ void	ft_swap_sprite(t_env *e)
 	{
 		if (e->sprite[e->sprite[i].sprite_order].sprite_distance < 
 				e->sprite[e->sprite[i + 1].sprite_order].sprite_distance)
-			ft_swap(e->sprite[e->sprite[i].sprite_order].sprite_distance, e->sprite[e->sprite[i + 1].sprite_order].sprite_distance);
+			ft_swap(&e->sprite[e->sprite[i].sprite_order].sprite_distance, &e->sprite[e->sprite[i + 1].sprite_order].sprite_distance);
 		i++;
 	}
 }
 
-void	ft_draw_sprite(t_env *e)
+void	ft_pos_sprite(t_env *e, int i)
+{
+	e->spt.x = e->sprite[e->sprite[i].sprite_order].coord.x - e->map.pos_n_x; //pas sur
+	e->spt.y = e->sprite[e->sprite[i].sprite_order].coord.y - e->map.pos_n_y; //pas sur
+	e->spt.inv_det = 1.0 / (e->map.plan_x * e->orientation.dir_y - e->orientation.dir_x * e->map.plan_y);
+	e->spt.transform_x = e->spt.inv_det * (e->orientation.dir_y * e->spt.x - e->orientation.dir_x * e->spt.y);
+	e->spt.transform_y = e->spt.inv_det * (-e->map.plan_y * e->spt.x + e->map.plan_x * e->spt.y);
+	e->spt.screen_x = (e->axes.axe_y / 2) * (1 + e->spt.transform_x / e->spt.transform_y);
+	e->spt.height = abs((int)(e->axes.axe_x / e->spt.transform_y));
+	e->spt.start_y = -e->spt.height / 2 + e->axes.axe_x / 2;
+	if (e->spt.start_y < 0)
+		e->spt.start_y = 0;
+	e->spt.end_y = e->spt.height / 2 + e->axes.axe_x / 2;
+	if (e->spt.end_y >= e->axes.axe_x)
+		e->spt.end_y = e->axes.axe_x - 1;
+	e->spt.width = abs((int)(e->axes.axe_x / e->spt.transform_y));
+	e->spt.start_x =  -e->spt.width / 2 + e->spt.screen_x;
+	if (e->spt.start_x < 0)
+		e->spt.start_x = 0;
+	e->spt.end_x = e->spt.width / 2 + e->spt.screen_x;
+	if (e->spt.end_x >= e->axes.axe_y)
+		e->spt.end_x = e->axes.axe_y - 1;
+}
+
+void	ft_get_color(t_env *e, int i)
+{
+	if (e->sprite[i].image.get_data[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w] != -16777216)
+		e->sprite[i].image.color = e->sprite[i].image.get_data[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w];
+	else
+		e->sprite[i].image.color = 0xBFD195;
+}
+
+void	ft_free_sprite(t_env *e)
+{
+	if (e->spt.dist_wall)
+		free(e->spt.dist_wall);
+}
+
+void	ft_sprite(t_env *e)
 {
 	int	i;
-	double	sprite_x;
-	double	sprite_y;
-	double 	inv_det;
-	double	transform_x;
-	double	transform_y;
-	int	sprite_screen_x;
-	
-	i = 0;
-	sprite_x = e->sprite[e->sprite[i].sprite_order].coord.x - e->map.pos_n_x; //pas sur
-	sprite_y = e->sprite[e->sprite[i].sprite_order].coord.y - e->map.pos_n_y; //pas sur
-	inv_det = 1.0 / (e->map.plan_x * e->orientation.dir_y - e->orientation.dir_x * e->map.plan_y);
-	transform_x = inv_det * (e->orientation.dir_y * sprite_x - e->orientation.dir_x * sprite_y);
-	transform_y = inv_det * (-e->map.plan_y * sprite_x + e->map.plan_x * sprite_y);
-	sprite_screen_x = (e->axes.axe_y / 2) * (1 + transform_x / transform_y);
+	int	x;
+	int	y;
+	int	d;
 
+	i = 0;
+	ft_sprite_distance(e);
+	ft_swap_sprite(e);
 	while (i < e->map.nbr_sprite)
 	{
+		ft_pos_sprite(e, i);
+		x = e->spt.start_x;
+		while (x < e->spt.end_x && x < e->axes.axe_x)
+		{
+			e->spt.tex_x = (int)256 * (x - (-e->spt.width / 2 + e->spt.screen_x)) * e->sprite[i].image.w / e->spt.width / 256;
+			if (e->spt.transform_y > 0)
+			{
+				y = e->spt.start_y;
+				while (y < e->spt.end_y)
+				{
+					d = (y) * 256 - e->axes.axe_x * 128 +  e->spt.height * 128;
+					e->spt.tex_y = ((d * e->sprite[i].image.h) / e->spt.height) / 256;
+					ft_get_color(e, i);
+					if (e->sprite[i].image.get_data[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w] != -16777216)
+						e->sprite[i].image.color = e->sprite[i].image.get_data[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w];
+					else
+						e->sprite[i].image.color = 0xBFD195;
+					if (e->sprite[i].image.color != 0xBFD195 && e->spt.transform_y < e->spt.dist_wall[x])
+					{
+						if (x >= 0 && x < e->axes.axe_x  && y >= 0 && y < e->axes.axe_y)
+							e->mlx.get_data[x + y * (e->mlx.size_line / 4)] = e->sprite[i].image.color;
+					}
+					y++;
+				}
+			}
+			x++;
+		}
 		i++;
 	}
+	ft_free_sprite(e);
+}
 
+void	ft_init_sprite(t_env *e)
+{
+	int x;
+	int y;
+	int i;
 
+	y = 0;
+	i = 0;
+	while (y < e->raycasting.y)
+	{
+		x = 0;
+		while (x < e->raycasting.x)
+		{
+			if (e->map.buff[x + (y * e->raycasting.x)] == '2')
+			{
+				e->sprite[i].coord = (t_coord){x + 0.5, y + 0.5};
+				i++;
+			}
+			x++;
+		}
+		y++;
+	}
 }

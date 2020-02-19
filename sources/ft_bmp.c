@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 10:18:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/13 13:52:08 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/19 10:24:41 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_image_bmp(t_env *e, t_bmp *bmp)
 
 void	ft_complete_header(t_env *e, t_bmp *bmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 14)
@@ -77,13 +77,13 @@ void	ft_complete_header(t_env *e, t_bmp *bmp)
 void	ft_bmp(t_env *e)
 {
 	t_bmp	bmp;
-	int	image_size;
+	int		image_size;
 
 	image_size = 3 * e->axes.axe_x * e->axes.axe_y;
-	bmp.size = 54 + image_size; // 54 de base
+	bmp.size = 54 + image_size;
 	bmp.image = malloc((sizeof(char) * image_size));
 	ft_memset(bmp.image, 0, image_size);
-	bmp.fd = open("image.bmp", O_CREAT | O_WRONLY, S_IRWXU); // S_IRWXU reecrire
+	bmp.fd = open("image.bmp", O_CREAT | O_WRONLY, S_IRWXU);
 	ft_complete_header(e, &bmp);
 	ft_image_bmp(e, &bmp);
 	free(bmp.image);

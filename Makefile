@@ -8,9 +8,6 @@ SRC_DIR = sources
 
 SRC =  sources/main.c \
 	sources/ft_parsing.c \
-	sources/ft_resolution.c \
-	sources/ft_root_textures.c \
-	sources/ft_colors.c \
 	sources/ft_read_map.c \
 	sources/ft_window.c \
 	sources/ft_orientation.c \
@@ -18,6 +15,7 @@ SRC =  sources/main.c \
 	sources/ft_textures.c \
 	sources/ft_bmp.c \
 	sources/ft_sprite.c \
+	sources/ft_utils.c \
 
 OBJ = $(SRC:%.c=%.o)
 
