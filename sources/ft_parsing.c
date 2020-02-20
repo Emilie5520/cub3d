@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:40:15 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 22:36:23 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 23:07:52 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ void	ft_initialize_parsing(t_env *e)
 {
 	ft_memset(e, 0, sizeof(t_env));
 }
+
 int	ft_check_identifiants(t_env *e)
 {
-	if (e->identifiants.r != 1 || e->identifiants.no != 1 || e->identifiants.so != 1 || e->identifiants.we != 1 || 
-			e->identifiants.ea != 1 || e->identifiants.s != 1 || e->identifiants.f != 1 || e->identifiants.c != 1 || e->identifiants.m != 1)
+	if (e->identifiants.r != 1 || e->identifiants.no != 1 ||
+			e->identifiants.so != 1 || e->identifiants.we != 1
+			|| e->identifiants.ea != 1 || e->identifiants.s != 1
+			|| e->identifiants.f != 1 || e->identifiants.c != 1
+			|| e->identifiants.m != 1)
 		return (0);
 	else
 		return (1);
@@ -76,12 +80,12 @@ void	ft_parsing_line(t_env *e, char *line)
 		ft_recup_map(line, e);
 		e->identifiants.m = 1;
 	}
-	else if (line && (line[i] != '1' || line[i] != '0') && e->identifiants.m == 1)
+	else if (line && (line[i] != '1' || line[i] != '0')
+			&& e->identifiants.m == 1)
 	{
 		printf("Error\nmap1");
 		ft_exit(e);
 	}
-	printf("line %c\n", line[i]);
 }
 
 int		ft_read_map(char **argv, t_env *e)

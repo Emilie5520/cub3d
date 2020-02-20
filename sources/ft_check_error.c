@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:08:51 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 22:26:13 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:52:43 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	ft_check_wall_next(t_env *e)
 void	ft_check_wall(t_env *e)
 {
 	int	i;
-	
+
 	i = 0;
-      	while (i < e->raycasting.x && e->map.tab_map[0][i])
-	{	
+	while (i < e->raycasting.x && e->map.tab_map[0][i])
+	{
 		if (e->map.tab_map[0][i] != '1')
 		{
 			printf("Error map\nOnly 1 on the edges of your map");
@@ -84,7 +84,7 @@ void	ft_check_resolution(t_env *e)
 
 void	ft_check_color(t_env *e, char *line, int i)
 {
-	int 	j;
+	int	j;
 
 	j = ft_isdigit(line[i]) ? 1 : 0;
 	if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)

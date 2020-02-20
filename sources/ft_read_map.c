@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 22:20:59 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 23:03:21 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,32 +66,37 @@ void	ft_recup_map_2(t_env *e)
 	}
 }
 
+void	ft_pos_perso_next(t_env *e, int i, int j)
+{
+	if (e->map.tab_map[i][j] != '1' && e->map.tab_map[i][j] != '0' &&
+				e->map.tab_map[i][j] != '2' &&
+				(ft_is_orientation(e, i, j) == 0))
+	{
+		printf("Error\rWrong map");
+		ft_exit(e);
+	}
+	if (e->map.tab_map[i][j] == '2')
+		e->map.nbr_sprite += 1;
+	if ((ft_is_orientation(e, i, j) == 1))
+	{
+		e->map.pos_n_x = j + 0.5;
+		e->map.pos_n_y = i + 0.5;
+		e->identifiants.perso = 1;
+	}
+}
+
 void	ft_pos_perso(t_env *e)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	j = 0;
 	while (e->map.tab_map[i] && i <= e->raycasting.y)
 	{
 		while (e->map.tab_map[i][j])
 		{
-			if (e->map.tab_map[i][j] != '1' && e->map.tab_map[i][j] != '0' &&
-				e->map.tab_map[i][j] != '2' &&
-				(ft_is_orientation(e, i, j) == 0))
-			{
-				printf("Error\rWrong map");
-				ft_exit(e);
-			}
-			if (e->map.tab_map[i][j] == '2')
-				e->map.nbr_sprite += 1;
-			if ((ft_is_orientation(e, i, j) == 1))
-			{
-				e->map.pos_n_x = j + 0.5;
-				e->map.pos_n_y = i + 0.5;
-				e->identifiants.perso = 1;
-			}
+			ft_pos_perso_next(e, i, j);
 			j++;
 		}
 		i++;
