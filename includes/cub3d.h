@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 20:45:49 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:24:49 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_identifiants
 	int		f;
 	int		c;
 	int		m;
+	int		perso;
 }					t_identifiants;
 
 typedef struct		s_axes
@@ -205,8 +206,8 @@ void		ft_initialize_parsing(t_env *e);
 void		ft_parsing_line(t_env *e, char *line);
 int			ft_read_map(char **argv, t_env *e);
 void		ft_recup_axes(t_env *e, char *line);
-char		*ft_recup_root(char *line);
-int			ft_recup_color(char *line);
+char		*ft_recup_root(char *line, t_env *e);
+int			ft_recup_color(char *line, t_env *e);
 void		ft_recup_map(char *line, t_env *e);
 void		ft_open_window(t_env *e);
 void		ft_recup_map_2(t_env *e);
@@ -235,5 +236,7 @@ void		ft_check_resolution(t_env *e);
 void		ft_check_wall_next(t_env *e);
 void		ft_check_map(t_env *e, int i, char *line);
 char		*ft_delete_space(char *str);
+void		ft_check_color(t_env *e, char *line, int i);
+void		ft_space(char *line, int *i);
 
 #endif

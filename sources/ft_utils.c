@@ -6,13 +6,13 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:54:08 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 11:17:45 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:33:03 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char	*ft_recup_root(char *line)
+char	*ft_recup_root(char *line, t_env *e)
 {
 	int		i;
 	char	**tab;
@@ -23,6 +23,11 @@ char	*ft_recup_root(char *line)
 	tab = ft_split(line, ' ');
 	if (line2)
 		line2 = ft_strdup(tab[1]);
+	if (tab[2])
+	{
+		printf("Error\nWrong .cub");
+		ft_exit(e);
+	}
 	while (tab[i])
 		free(tab[i++]);
 	free(tab[i]);
@@ -30,13 +35,15 @@ char	*ft_recup_root(char *line)
 	return (line2);
 }
 
-int		ft_recup_color(char *line)
+int		ft_recup_color(char *line, t_env *e)
 {
 	int	i;
 	int	color;
-
+	
 	i = 0;
 	i++;
+	ft_space(line, &i);
+	ft_check_color(e, line, i);
 	while (line[i] == ' ')
 		i++;
 	color = ft_atoi(&line[i]) * 65536;
@@ -46,6 +53,15 @@ int		ft_recup_color(char *line)
 	while (ft_isdigit(line[i]))
 		i++;
 	color += ft_atoi(&line[++i]);
+	ft_space(line, &i);
+	while (ft_isdigit(line[i]))
+		i++;
+	ft_space(line, &i);
+	if (line[i])
+	{
+		printf("Error\nWrong .cub");
+		ft_exit(e);
+	}
 	return (color);
 }
 
@@ -64,6 +80,15 @@ void	ft_recup_axes(t_env *e, char *line)
 		i++;
 	i++;
 	e->axes.axe_y = ft_atoi(&line[i]);
+	ft_space(line, &i);
+	while (ft_isdigit(line[i]))
+		i++;
+	ft_space(line, &i);
+	if (line[i])
+	{
+		printf("Error\nWrong .cub");
+		ft_exit(e);
+	}
 }
 
 int		ft_key_down(int keycode, t_env *e)
@@ -100,4 +125,11 @@ int		ft_key_up(int keycode, t_env *e)
 	if (keycode == 53)
 		exit(1);
 	return (0);
+}
+
+void	ft_space(char *line, int *i)
+{
+	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
+			|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
+		(*i)++;
 }

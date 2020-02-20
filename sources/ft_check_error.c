@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:08:51 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 21:09:11 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:26:13 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,33 @@ void	ft_check_resolution(t_env *e)
 		printf("Error\nResolution <= 0");
 		ft_exit(e);
 	}
+}
+
+void	ft_check_color(t_env *e, char *line, int i)
+{
+	int 	j;
+
+	j = ft_isdigit(line[i]) ? 1 : 0;
+	if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
+		j--;
+	while (ft_isdigit(line[i]))
+		i++;
+	j += line[i] == ',' ? 1 : 0;
+	j += ft_isdigit(line[++i]) ? 1 : 0;
+	if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
+		j--;
+	while (ft_isdigit(line[i]))
+		i++;
+	j += line[i] == ',' ? 1 : 0;
+	j += ft_isdigit(line[++i]) ? 1 : 0;
+	if (ft_atoi(&line[i]) < 0 || ft_atoi(&line[i]) > 255)
+		j--;
+	while (ft_isdigit(line[i]))
+		i++;
+	ft_space(line, &i);
+	j -= line[i] != '\0' ? 1 : 0;
+	if (j != 5)
+		printf("Error\nWrong color");
+	if (j != 5)
+		ft_exit(e);
 }

@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 19:56:13 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 22:20:59 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,16 @@ void	ft_pos_perso(t_env *e)
 			{
 				e->map.pos_n_x = j + 0.5;
 				e->map.pos_n_y = i + 0.5;
+				e->identifiants.perso = 1;
 			}
 			j++;
 		}
 		i++;
 		j = 0;
+	}
+	if (e->identifiants.perso == 0)
+	{
+		printf("Error\nMiss perso");
+		ft_exit(e);
 	}
 }

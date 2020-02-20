@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:12:40 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 17:48:38 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 21:42:54 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int		ft_is_orientation(t_env *e, int i, int j)
 	if (e->map.tab_map[i][j] == 'N' || e->map.tab_map[i][j] == 'S' ||
 					e->map.tab_map[i][j] == 'E' || e->map.tab_map[i][j] == 'W')
 	{
+		if (e->identifiants.perso == 1)
+		{
+			printf("Error\nmulti perso");
+			ft_exit(e);
+		}
 		e->orientation.orientation_perso = e->map.tab_map[i][j];
 		return (1);
 	}
