@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 10:18:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 12:20:58 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 15:49:30 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ void	ft_image_bmp(t_env *e, t_bmp *bmp)
 		{
 			x = i;
 			y = e->axes.axe_y - 1 - j;
-			printf("color %d\n", bmp->color);
-			printf("x %d\n", x);
-			printf("y %d\n", y);
-			printf("axe x %d\n", e->axes.axe_x);
 			bmp->color = e->mlx.get_data[x + y * e->axes.axe_x];
 			write(bmp->fd, &bmp->color, 3);
 		}

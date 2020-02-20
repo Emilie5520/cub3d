@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 20:47:08 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:45:49 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_identifiants
 	int		s;
 	int		f;
 	int		c;
+	int		m;
 }					t_identifiants;
 
 typedef struct		s_axes
@@ -231,5 +232,8 @@ void		ft_sprite(t_env *e);
 void		ft_init_sprite(t_env *e);
 void		ft_check_wall(t_env *e);
 void		ft_check_resolution(t_env *e);
+void		ft_check_wall_next(t_env *e);
+void		ft_check_map(t_env *e, int i, char *line);
+char		*ft_delete_space(char *str);
 
 #endif

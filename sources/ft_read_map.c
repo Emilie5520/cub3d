@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:13:06 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 21:35:15 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 19:56:13 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_recup_map_2(t_env *e)
 	j = 0;
 	e->map.buff = ft_delete_space(e->map.buff);
 	e->map.tab_map = ft_split(e->map.buff, '\n');
-	while (e->map.tab_map[0][i] == '1')
+	while (e->map.tab_map[0][i])
 	{
 		e->raycasting.x = i++;
 	}
@@ -70,7 +70,7 @@ void	ft_pos_perso(t_env *e)
 {
 	int	i;
 	int	j;
-
+	
 	i = 0;
 	j = 0;
 	while (e->map.tab_map[i] && i <= e->raycasting.y)
@@ -81,7 +81,7 @@ void	ft_pos_perso(t_env *e)
 				e->map.tab_map[i][j] != '2' &&
 				(ft_is_orientation(e, i, j) == 0))
 			{
-				printf("Error\nonly 1, 2, 0, or S,N,W,E");
+				printf("Error\rWrong map");
 				ft_exit(e);
 			}
 			if (e->map.tab_map[i][j] == '2')

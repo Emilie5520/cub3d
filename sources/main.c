@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:21 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 21:32:45 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 20:58:40 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		main(int argc, char **argv)
 	len = (ft_strlen(argv[1]) - 4);
 	ft_initialize_parsing(&e);
 	ft_read_map(argv, &e);
-	//ft_check_wall(&e);
+	ft_check_wall(&e);
 	ft_check_resolution(&e);
 	if (argv[2] && !ft_strncmp(argv[2], "--save", 6))
 		ft_push_bmp(&e);

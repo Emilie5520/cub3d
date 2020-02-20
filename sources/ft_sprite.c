@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 14:03:52 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 19:49:43 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:54:05 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,6 @@ void	ft_sprite(t_env *e)
 				{
 					d = (y * 256 - e->axes.axe_y * 128 +  e->spt.height * 128);
 					e->spt.tex_y = (d * e->sprite[i].image.h / e->spt.height) / 256;
-					//printf("%d\n", i);
-					//printf("image h %d\n",e->sprite[i].image.h);
 					ft_get_color(e, i);
 					if (e->sprite[i].image.color != 0xBFD195 && e->spt.transform_y < e->spt.dist_wall[x])
 					{
@@ -150,10 +148,10 @@ void	ft_init_sprite(t_env *e)
 
 	y = 0;
 	i = 0;
-	while (y < e->raycasting.y)
+	while (e->map.tab_map[y])
 	{
 		x = 0;
-		while (x < e->raycasting.x)
+		while (e->map.tab_map[y][x])
 		{
 			if (e->map.tab_map[y][x] == '2')
 			{

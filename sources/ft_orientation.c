@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:12:40 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 16:40:02 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 17:48:38 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	ft_orientation_perso(t_env *e)
 	if (e->orientation.orientation_perso == 'N')
 	{
 		e->orientation.dir_x = 0;
-		e->orientation.dir_y = 1;
+		e->orientation.dir_y = -1;
 	}
 	if (e->orientation.orientation_perso == 'S')
 	{
 		e->orientation.dir_x = 0;
-		e->orientation.dir_y = -1;
+		e->orientation.dir_y = 1;
 	}
 	if (e->orientation.orientation_perso == 'W')
 	{

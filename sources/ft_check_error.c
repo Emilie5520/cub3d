@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:08:51 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/19 16:48:50 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/20 21:09:11 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,24 @@ void	ft_check_wall_next(t_env *e)
 	int	i;
 	int	j;
 
-	j = 0;
-	i = e->raycasting.x;
-	while (e->map.tab_map[i][j])
-	{
-		if (e->map.tab_map[i][j] != '1')
-		{
-			printf("Error map\nOnly '1' on the edges of your map");
-			ft_exit(e);
-		}
-		j++;
-	}
-	i = e->raycasting.y;
-	j = 0;
-	while (e->map.tab_map[j][i])
+	i = 0;
+	j = e->raycasting.y - 1;
+	while (i < e->raycasting.x && e->map.tab_map[j][i])
 	{
 		if (e->map.tab_map[j][i] != '1')
 		{
-			printf("Error map\nOnly '1' on the edges of your map");
+			printf("Error map\nOnly 13 on the edges of your map");
+			ft_exit(e);
+		}
+		i++;
+	}
+	j = 1;
+	i = e->raycasting.x + 1;
+	while (j < e->raycasting.y)
+	{
+		if (e->map.tab_map[j][i] != '1')
+		{
+			printf("Error map\nOnly 14 on the edges of your map");
 			ft_exit(e);
 		}
 		j++;
@@ -47,22 +47,21 @@ void	ft_check_wall(t_env *e)
 	int	i;
 	
 	i = 0;
-	while (e->map.tab_map[0][i])
+      	while (i < e->raycasting.x && e->map.tab_map[0][i])
 	{	
 		if (e->map.tab_map[0][i] != '1')
 		{
-			printf("Error map\nOnly '1' on the edges of your map");
+			printf("Error map\nOnly 1 on the edges of your map");
 			ft_exit(e);
 		}
 		i++;
 	}
 	i = 0;
-	while (e->map.tab_map[i][0])
+	while (i < e->raycasting.y && e->map.tab_map[i][0])
 	{
-		
 		if (e->map.tab_map[i][0] != '1')
 		{
-			printf("Error map\nOnly '1' on the edges of your map");
+			printf("Error map\nOnly 1 on the edges of your map");
 			ft_exit(e);
 		}
 		i++;
@@ -76,4 +75,9 @@ void	ft_check_resolution(t_env *e)
 		e->axes.axe_x = 2560;
 	if (e->axes.axe_y > 1440)
 		e->axes.axe_y = 1440;
+	if (e->axes.axe_x <= 0 || e->axes.axe_y <= 0)
+	{
+		printf("Error\nResolution <= 0");
+		ft_exit(e);
+	}
 }
