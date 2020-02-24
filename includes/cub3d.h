@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 22:24:49 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:14:38 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,5 +238,11 @@ void		ft_check_map(t_env *e, int i, char *line);
 char		*ft_delete_space(char *str);
 void		ft_check_color(t_env *e, char *line, int i);
 void		ft_space(char *line, int *i);
+void		ft_deplacement_down(t_env *e);
+void		ft_deplacement_left(t_env *e);
+void		ft_deplacement_right(t_env *e);
+void		ft_free_sprite(t_env *e);
+void		ft_get_color(t_env *e, int i);
+void		ft_free(t_env *e);
 
 #endif

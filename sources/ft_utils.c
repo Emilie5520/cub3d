@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:54:08 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 22:33:03 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:22:11 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ char	*ft_recup_root(char *line, t_env *e)
 	char	*line2;
 
 	i = 0;
-	line2 = ft_strdup("");
 	tab = ft_split(line, ' ');
-	if (line2)
-		line2 = ft_strdup(tab[1]);
+	line2 = ft_strdup(tab[1]);
 	if (tab[2])
 	{
 		printf("Error\nWrong .cub");
@@ -37,11 +35,10 @@ char	*ft_recup_root(char *line, t_env *e)
 
 int		ft_recup_color(char *line, t_env *e)
 {
-	int	i;
-	int	color;
-	
-	i = 0;
-	i++;
+	int		i;
+	int		color;
+
+	i = 1;
 	ft_space(line, &i);
 	ft_check_color(e, line, i);
 	while (line[i] == ' ')
@@ -67,7 +64,7 @@ int		ft_recup_color(char *line, t_env *e)
 
 void	ft_recup_axes(t_env *e, char *line)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (ft_isprint(line[i]) == 0)
@@ -123,13 +120,6 @@ int		ft_key_up(int keycode, t_env *e)
 	if (keycode == 12 || keycode == 123)
 		e->mvt.rot_left = 0;
 	if (keycode == 53)
-		exit(1);
+		ft_exit(e);
 	return (0);
-}
-
-void	ft_space(char *line, int *i)
-{
-	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
-			|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
-		(*i)++;
 }

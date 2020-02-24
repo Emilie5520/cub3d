@@ -17,12 +17,14 @@ SRC =  sources/main.c \
 	sources/ft_sprite.c \
 	sources/ft_utils.c \
 	sources/ft_check_error.c \
+	sources/ft_utils_2.c \
+	sources/ft_sprite_2.c \
 
 OBJ = $(SRC:%.c=%.o)
 
 IFLAGS = -I./includes -I./libft
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=undefined
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
 
 LIBS =  -L./libft  -lft  -lmlx   -framework OpenGL  -framework AppKit
 

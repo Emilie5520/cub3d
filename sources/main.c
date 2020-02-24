@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:21 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 21:53:06 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:19:53 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_init_image(t_env *e)
 {
-	if (!(e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->axes.axe_x, e->axes.axe_y)))
+	if (!(e->mlx.new_image = mlx_new_image(e->mlx.ptr,
+					e->axes.axe_x, e->axes.axe_y)))
 	{
 		printf("Error\nmlx_new_image");
 		ft_exit(e);
@@ -68,8 +69,11 @@ int		ft_exit(t_env *e)
 		mlx_clear_window(e->mlx.ptr, e->mlx.win_ptr);
 		mlx_destroy_window(e->mlx.ptr, e->mlx.win_ptr);
 	}
-	if (e->map.tab_map)
-		free(e->map.tab_map);
+	if (e->sprite)
+		free(e->sprite);
+	if (e->map.buff)
+		free(e->map.buff);
+	system("leaks Cub3D");
 	exit(0);
 	return (0);
 }
@@ -79,12 +83,23 @@ void	ft_push_bmp(t_env *e)
 	e->mlx.ptr = mlx_init();
 	e->mlx.win_ptr = mlx_new_window(e->mlx.ptr, e->axes.axe_x,
 			e->axes.axe_y, "Cub3d");
+	if (!(e->sprite = (t_sprite*)ft_calloc(sizeof(t_sprite), e->map.nbr_sprite)))
+	{
+		printf("Error\nMalloc sprite");
+		ft_exit(e);
+	}
 	ft_textures(e);
 	ft_init_sprite(e);
 	e->mlx.new_image = mlx_new_image(e->mlx.ptr, e->axes.axe_x, e->axes.axe_y);
 	e->mlx.get_data = (int *)mlx_get_data_addr(e->mlx.new_image,
 			&e->mlx.bits_per_pixel, &e->mlx.size_line, &e->mlx.endian);
+	if (!(e->spt.dist_wall = ft_calloc(sizeof(double), e->axes.axe_x)))
+	{
+		printf("Error\nMalloc e->spt.dist_wall");
+		ft_exit(e);
+	}
 	ft_raycasting(e);
+	ft_sprite(e);
 	ft_bmp(e);
 	ft_exit(e);
 }
@@ -92,15 +107,15 @@ void	ft_push_bmp(t_env *e)
 int		main(int argc, char **argv)
 {
 	t_env	e;
-	int	len;
+	int		len;
 
-	if (argc < 2 || argc > 2)
+	ft_bzero(&e, sizeof(t_env));
+	if (argc < 2 || argc > 3)
 	{
 		printf("Error\nargc");
 		ft_exit(&e);
 	}
 	len = (ft_strlen(argv[1]) - 4);
-	ft_initialize_parsing(&e);
 	ft_read_map(argv, &e);
 	ft_check_wall(&e);
 	ft_check_resolution(&e);

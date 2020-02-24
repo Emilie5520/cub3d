@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils_2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 10:02:47 by edouvier          #+#    #+#             */
+/*   Updated: 2020/02/24 12:16:49 by edouvier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/cub3d.h"
+
+void	ft_initialize_parsing(t_env *e)
+{
+	ft_memset(e, 0, sizeof(t_env));
+}
+
+void	ft_space(char *line, int *i)
+{
+	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
+			|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
+		(*i)++;
+}
+
+void	ft_mv_up(t_env *e)
+{
+	if (e->mvt.up == 1)
+	{
+		if ((e->map.tab_map[(int)(e->map.pos_n_y)]
+				[(int)(e->map.pos_n_x + e->orientation.dir_x * 0.2)] != '1')
+		&& (e->map.tab_map[(int)(e->map.pos_n_y)]
+				[(int)(e->map.pos_n_x + e->orientation.dir_x * 0.2)] != '2'))
+			e->map.pos_n_x += e->orientation.dir_x * 0.2;
+		if ((e->map.tab_map[(int)(e->map.pos_n_y + e->orientation.dir_y * 0.2)]
+				[(int)(e->map.pos_n_x)] != '1')
+		&& (e->map.tab_map[(int)(e->map.pos_n_y + e->orientation.dir_y * 0.2)]
+				[(int)(e->map.pos_n_x)] != '2'))
+			e->map.pos_n_y += e->orientation.dir_y * 0.2;
+	}
+}
+
+int		ft_deplacement(t_env *e)
+{
+	double tmp;
+
+	tmp = e->map.pos_n_x + e->map.pos_n_y + e->map.plan_x + e->map.plan_y;
+	e->mvt.vit_rot = 0.08;
+	ft_mv_up(e);
+	ft_deplacement_down(e);
+	ft_deplacement_left(e);
+	ft_deplacement_right(e);
+	if (tmp != e->map.pos_n_x + e->map.pos_n_y + e->map.plan_x + e->map.plan_y)
+		ft_init_image(e);
+	return (0);
+}
