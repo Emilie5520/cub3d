@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:21 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 14:42:44 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:46:56 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,24 @@ void	ft_open_window(t_env *e)
 	mlx_hook(e->mlx.win_ptr, 3, 0, &ft_key_up, e);
 	mlx_hook(e->mlx.win_ptr, 17, 0, &ft_exit, e);
 	mlx_loop_hook(e->mlx.ptr, &ft_deplacement, e);
-	//system("leaks Cub3D");
-	//exit(0);
 	mlx_loop(e->mlx.ptr);
 }
 
 int		ft_exit(t_env *e)
 {
+	int	i;
+
+	i = 0;
 	if (e->mlx.ptr && e->mlx.win_ptr)
 	{
 		mlx_clear_window(e->mlx.ptr, e->mlx.win_ptr);
 		mlx_destroy_window(e->mlx.ptr, e->mlx.win_ptr);
+	}
+	while (i < e->map.nbr_sprite)
+	{
+		free(e->sprite[i].image.win_ptr);
+		free(e->sprite[i].image.get_data);
+		i++;
 	}
 	if (e->sprite)
 		free(e->sprite);

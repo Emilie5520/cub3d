@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:18:14 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 15:11:20 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:42:27 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 size_t				ft_strlcat(char *dest, const char *src, size_t size);
 int					ft_atoi(const char *str);
 char				*ft_strnstr(const char *str, const char *c, size_t n);
-char				*ft_strdup(const char *src);
+char				*ft_strdup(char *src);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2, int k);
 char				*ft_strtrim(char const *s1, char const *set);

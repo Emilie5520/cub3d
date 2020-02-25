@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:40:15 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 12:12:39 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:04:43 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_parsing_line_next(t_env *e, char *line, int i)
 		e->root_textures.east = ft_recup_root(line, e);
 		e->identifiants.ea = 1;
 	}
-	else if (line[i] == 'S' && e->identifiants.m == 0)
+	else if (line[i] == 'S' && line[i + 1] == ' ' && e->identifiants.m == 0)
 	{
 		e->root_textures.sprite = ft_recup_root(line, e);
 		e->identifiants.s = 1;

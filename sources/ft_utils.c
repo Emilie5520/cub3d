@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 10:54:08 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/24 16:16:54 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:04:12 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,22 @@ char	*ft_recup_root(char *line, t_env *e)
 	char	**tab;
 	char	*line2;
 
-	i = 0;
-	tab = ft_split(line, ' ');
-	line2 = ft_strdup(tab[1]);
+	if (!(tab = ft_split(line, ' ')))
+	{
+		printf("Error\n");
+		ft_exit(e);
+	}
+	if (!(line2 = ft_strdup(tab[1])))
+	{
+		printf("Error\n");
+		ft_exit(e);
+	}
 	if (tab[2])
 	{
 		printf("Error\nWrong .cub");
 		ft_exit(e);
 	}
+	i = 0;
 	while (tab[i])
 		free(tab[i++]);
 	free(tab[i]);
