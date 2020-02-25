@@ -6,16 +6,11 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:02:47 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/24 12:16:49 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:18:55 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	ft_initialize_parsing(t_env *e)
-{
-	ft_memset(e, 0, sizeof(t_env));
-}
 
 void	ft_space(char *line, int *i)
 {

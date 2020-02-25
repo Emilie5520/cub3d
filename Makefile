@@ -24,7 +24,7 @@ OBJ = $(SRC:%.c=%.o)
 
 IFLAGS = -I./includes -I./libft
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=undefined
 
 LIBS =  -L./libft  -lft  -lmlx   -framework OpenGL  -framework AppKit
 

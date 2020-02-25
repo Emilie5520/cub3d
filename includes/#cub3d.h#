@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/24 16:19:03 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:32:00 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct		s_mlx
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-//	void	*file_to_image;
+	void	*file_to_image;
 	int		color;
 	int		h;
 	int		w;
@@ -175,7 +175,7 @@ typedef struct		s_spt
 	int	start_x;
 	int	end_y;
 	int	end_x;
-	int	width;
+d	int	width;
 	int	tex_x;
 	int	tex_y;
 	double	*dist_wall;
@@ -202,6 +202,7 @@ typedef struct		s_env
 	t_spt			spt;
 }					t_env;
 
+void		ft_initialize_parsing(t_env *e);
 void		ft_parsing_line(t_env *e, char *line);
 int			ft_read_map(char **argv, t_env *e);
 void		ft_recup_axes(t_env *e, char *line);

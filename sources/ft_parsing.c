@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:40:15 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/24 12:39:45 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:33:41 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int		ft_read_map(char **argv, t_env *e)
 
 	ret = 1;
 	line = NULL;
-	ft_initialize_parsing(e);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	{
 		printf("Error\n");
