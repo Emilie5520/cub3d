@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/24 16:19:03 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:45:06 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,6 @@ void		ft_deplacement_right(t_env *e);
 void		ft_free_sprite(t_env *e);
 void		ft_get_color(t_env *e, int i);
 void		ft_free(t_env *e);
+void		ft_check(t_env *e);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:08:51 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/20 22:52:43 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 11:44:40 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,12 @@ void	ft_check_resolution(t_env *e)
 		printf("Error\nResolution <= 0");
 		ft_exit(e);
 	}
+}
+
+void	ft_check(t_env *e)
+{
+	ft_check_wall(e);
+	ft_check_resolution(e);
 }
 
 void	ft_check_color(t_env *e, char *line, int i)

@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:37:21 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/24 14:19:53 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/25 14:42:44 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ft_open_window(t_env *e)
 	mlx_hook(e->mlx.win_ptr, 3, 0, &ft_key_up, e);
 	mlx_hook(e->mlx.win_ptr, 17, 0, &ft_exit, e);
 	mlx_loop_hook(e->mlx.ptr, &ft_deplacement, e);
+	//system("leaks Cub3D");
+	//exit(0);
 	mlx_loop(e->mlx.ptr);
 }
 
@@ -83,7 +85,8 @@ void	ft_push_bmp(t_env *e)
 	e->mlx.ptr = mlx_init();
 	e->mlx.win_ptr = mlx_new_window(e->mlx.ptr, e->axes.axe_x,
 			e->axes.axe_y, "Cub3d");
-	if (!(e->sprite = (t_sprite*)ft_calloc(sizeof(t_sprite), e->map.nbr_sprite)))
+	if (!(e->sprite = (t_sprite*)ft_calloc(sizeof(t_sprite),
+					e->map.nbr_sprite)))
 	{
 		printf("Error\nMalloc sprite");
 		ft_exit(e);
@@ -117,8 +120,7 @@ int		main(int argc, char **argv)
 	}
 	len = (ft_strlen(argv[1]) - 4);
 	ft_read_map(argv, &e);
-	ft_check_wall(&e);
-	ft_check_resolution(&e);
+	ft_check(&e);
 	if (argv[2] && !ft_strncmp(argv[2], "--save", 6))
 		ft_push_bmp(&e);
 	if (!argv[1] || (ft_strncmp(argv[1] + len, ".cub", 4)))
