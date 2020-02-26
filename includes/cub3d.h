@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:52:18 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 11:45:06 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/26 12:56:02 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ typedef struct		s_mlx
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-//	void	*file_to_image;
 	int		color;
 	int		h;
 	int		w;
