@@ -35,6 +35,7 @@ void	ft_init_image(t_env *e)
 	ft_sprite(e);
 	mlx_put_image_to_window(e->mlx.ptr, e->mlx.win_ptr,
 			e->mlx.new_image, 0, 0);
+	mlx_do_sync(e->mlx.ptr);
 	mlx_destroy_image(e->mlx.ptr, e->mlx.new_image);
 }
 
