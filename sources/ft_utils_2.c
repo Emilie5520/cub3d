@@ -12,6 +12,18 @@
 
 #include "../includes/cub3d.h"
 
+void	ft_parsing_read(t_env *e)
+{
+	if (ft_check_identifiants(e) == 0)
+	{
+		printf("Error\nmap");
+		ft_exit(e);
+	}
+	ft_recup_map_2(e);
+	ft_pos_perso(e);
+	ft_orientation_perso(e);
+}
+
 void	ft_space(char *line, int *i)
 {
 	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')

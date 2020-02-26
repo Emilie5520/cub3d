@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:40:15 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 16:04:43 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/02/26 13:00:17 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,6 @@ int		ft_read_map(char **argv, t_env *e)
 	}
 	ft_strdel(&line);
 	close(fd);
-	if (ft_check_identifiants(e) == 0)
-	{
-		printf("Error\nmap");
-		ft_exit(e);
-	}
-	ft_recup_map_2(e);
-	ft_pos_perso(e);
-	ft_orientation_perso(e);
+	ft_parsing_read(e);
 	return (1);
 }
