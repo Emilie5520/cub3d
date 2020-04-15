@@ -17,16 +17,16 @@ t_textures		ft_info_texture(char *root_texture, t_env *e)
 	t_textures	texture;
 
 	ft_memset(&texture, 0, sizeof(t_textures));
-	if (!(texture.win_ptr = mlx_xpm_file_to_image(e->mlx.win_ptr,
+	if (!(texture.win_ptr = mlx_xpm_file_to_image(e->mlx.ptr,
 			root_texture, &texture.w, &texture.h)))
 	{
-		printf("Error\nWrong texture");
+		ft_putstr("Error\nWrong texture1");
 		ft_exit(e);
 	}
 	if (!(texture.get_data = (int *)mlx_get_data_addr(texture.win_ptr,
 			&texture.bits_per_pixel, &texture.size_line, &texture.endian)))
 	{
-		printf("Error\nWrong texture");
+		ft_putstr("Error\nWrong texture");
 		ft_exit(e);
 	}
 	return (texture);
@@ -36,16 +36,16 @@ t_mlx			ft_info_sprite(char *root_texture, t_env *e)
 {
 	t_mlx	texture;
 
-	if (!(texture.win_ptr = mlx_xpm_file_to_image(e->mlx.win_ptr, root_texture,
+	if (!(texture.win_ptr = mlx_xpm_file_to_image(e->mlx.ptr, root_texture,
 			&texture.w, &texture.h)))
 	{
-		printf("Error\nWrong sprite");
+		ft_putstr("Error\nWrong sprite");
 		ft_exit(e);
 	}
 	if (!(texture.get_data = (int *)mlx_get_data_addr(texture.win_ptr,
 			&texture.bits_per_pixel, &texture.size_line, &texture.endian)))
 	{
-		printf("Error\nWrong sprite");
+		ft_putstr("Error\nWrong sprite");
 		ft_exit(e);
 	}
 	return (texture);

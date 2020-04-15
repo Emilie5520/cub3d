@@ -54,10 +54,8 @@ void	ft_recup_map(char *line, t_env *e)
 void	ft_recup_map_2(t_env *e)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	e->map.buff = ft_delete_space(e->map.buff);
 	e->map.tab_map = ft_split(e->map.buff, '\n');
 	while (e->map.tab_map[0][i])
@@ -72,7 +70,7 @@ void	ft_pos_perso_next(t_env *e, int i, int j)
 				e->map.tab_map[i][j] != '2' &&
 				(ft_is_orientation(e, i, j) == 0))
 	{
-		printf("Error\rWrong map");
+		ft_putstr("Error\rWrong map");
 		ft_exit(e);
 	}
 	if (e->map.tab_map[i][j] == '2')
@@ -104,7 +102,7 @@ void	ft_pos_perso(t_env *e)
 	}
 	if (e->identifiants.perso == 0)
 	{
-		printf("Error\nMiss perso");
+		ft_putstr("Error\nMiss perso");
 		ft_exit(e);
 	}
 }

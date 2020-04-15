@@ -22,27 +22,36 @@ SRC =  sources/main.c \
 
 OBJ = $(SRC:%.c=%.o)
 
-IFLAGS = -I./includes -I./libft
+IFLAGS = ./includes/
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lm -lbsd -lX11 -lXext
 
-LIBS =  -L./libft  -lft  -lmlx   -framework OpenGL  -framework AppKit
+DIRMLX = ./minilibx/
+
+DIRLIB = ./libft/
+
+NAMELIB = libft.a
+
+NAMEMLX = libmlx.a
 
 all: $(NAME)
 
 %.o: %.c
-	gcc $(CFLAGS) $(IFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -c -I$(IFLAGS) -I$(DIRMLX) -I$(DIRLIB) $< -o $(<:.c=.o) 
 
 $(NAME): $(OBJ)
-	@make -s  -C libft
-	gcc $(CFLAGS) $(IFLAGS) $(SRC) $(LIBS) -o $(NAME)
+	cd ./libft/ && make
+	cd ./minilibx/ && make
+	gcc -o $(NAME) -I$(IFLAGS) -I$(DIRMLX) $(OBJ) $(DIRMLX)$(NAMEMLX) $(DIRLIB)$(NAMELIB) minilibx/libmlx_Linux.a $(CFLAGS)
 
 clean:
 	make clean -C libft
+	make clean -C minilibx
 	rm -f $(SRC_DIR)/*.o
 
 fclean: clean
 	make fclean -C libft
+	make clean -C minilibx
 	rm -f $(NAME)
 
 show:

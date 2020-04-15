@@ -48,11 +48,9 @@ int		count_words(char *str, char c)
 char	*strdup_like(char *src, char c)
 {
 	int		i;
-	int		j;
 	char	*dest;
 
 	i = 0;
-	j = 0;
 	dest = (char *)malloc(sizeof(char) * (strlen_like(src, c) + 1));
 	if (dest == NULL)
 	{

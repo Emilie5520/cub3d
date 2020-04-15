@@ -39,7 +39,7 @@ void	ft_parsing_line_again(t_env *e, char *line, int i)
 	else if (line && (line[i] != '1' || line[i] != '0')
 			&& e->identifiants.m == 1)
 	{
-		printf("Error\nmap1");
+		ft_putstr("Error\nmap1");
 		ft_exit(e);
 	}
 }
@@ -103,14 +103,14 @@ int		ft_read_map(char **argv, t_env *e)
 	line = NULL;
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	{
-		printf("Error\n");
+		ft_putstr("Error\n");
 		ft_exit(e);
 	}
 	while ((ret = get_next_line(fd, &line)) == 1)
 	{
 		if (ret == -1)
 		{
-			printf("Error\n");
+			ft_putstr("Error\n");
 			ft_exit(e);
 		}
 		ft_parsing_line(e, line);

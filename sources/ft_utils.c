@@ -20,17 +20,17 @@ char	*ft_recup_root(char *line, t_env *e)
 
 	if (!(tab = ft_split(line, ' ')))
 	{
-		printf("Error\n");
+		ft_putstr("Error\n");
 		ft_exit(e);
 	}
 	if (!(line2 = ft_strdup(tab[1])))
 	{
-		printf("Error\n");
+		ft_putstr("Error\n");
 		ft_exit(e);
 	}
 	if (tab[2])
 	{
-		printf("Error\nWrong .cub");
+		ft_putstr("Error\nWrong .cub");
 		ft_exit(e);
 	}
 	i = 0;
@@ -64,7 +64,7 @@ int		ft_recup_color(char *line, t_env *e)
 	ft_space(line, &i);
 	if (line[i])
 	{
-		printf("Error\nWrong .cub");
+		ft_putstr("Error\nWrong .cub");
 		ft_exit(e);
 	}
 	return (color);
@@ -91,43 +91,43 @@ void	ft_recup_axes(t_env *e, char *line)
 	ft_space(line, &i);
 	if (line[i])
 	{
-		printf("Error\nWrong .cub");
+		ft_putstr("Error\nWrong .cub");
 		ft_exit(e);
 	}
 }
 
 int		ft_key_down(int keycode, t_env *e)
 {
-	if (keycode == 13)
+	if (keycode == 122)
 		e->mvt.up = 1;
-	if (keycode == 1)
+	if (keycode == 115)
 		e->mvt.down = 1;
-	if (keycode == 2)
+	if (keycode == 100)
 		e->mvt.right = 1;
-	if (keycode == 0)
+	if (keycode == 113)
 		e->mvt.left = 1;
-	if (keycode == 14 || keycode == 124)
+	if (keycode == 65363)
 		e->mvt.rot_right = 1;
-	if (keycode == 12 || keycode == 123)
+	if (keycode == 65361)
 		e->mvt.rot_left = 1;
 	return (0);
 }
 
 int		ft_key_up(int keycode, t_env *e)
 {
-	if (keycode == 13)
+	if (keycode == 122)
 		e->mvt.up = 0;
-	if (keycode == 1)
+	if (keycode == 115)
 		e->mvt.down = 0;
-	if (keycode == 2)
+	if (keycode == 100)
 		e->mvt.right = 0;
-	if (keycode == 0)
+	if (keycode == 113)
 		e->mvt.left = 0;
-	if (keycode == 14 || keycode == 124)
+	if (keycode == 65363)
 		e->mvt.rot_right = 0;
-	if (keycode == 12 || keycode == 123)
+	if (keycode == 65361)
 		e->mvt.rot_left = 0;
-	if (keycode == 53)
+	if (keycode == 65307)
 		ft_exit(e);
 	return (0);
 }

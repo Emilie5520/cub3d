@@ -6,7 +6,7 @@
 #    By: edouvier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 12:34:35 by edouvier          #+#    #+#              #
-#    Updated: 2020/02/24 12:36:32 by edouvier         ###   ########.fr        #
+#    Updated: 2020/04/11 09:24:36 by edouvier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS = ft_memset.c \
        ft_power.c \
        ft_swap.c \
        ft_strdel.c \
+       ft_putstr.c \
 
 BONUS = ft_lstadd_back.c \
 	ft_lstadd_front.c \

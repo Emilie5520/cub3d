@@ -14,11 +14,9 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
 	void	*pointeur;
 	int		len;
 
-	i = 0;
 	if (nmemb == 0 || size == 0)
 	{
 		size = 1;

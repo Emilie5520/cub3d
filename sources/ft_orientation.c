@@ -19,7 +19,7 @@ int		ft_is_orientation(t_env *e, int i, int j)
 	{
 		if (e->identifiants.perso == 1)
 		{
-			printf("Error\nmulti perso");
+			ft_putstr("Error\nmulti perso");
 			ft_exit(e);
 		}
 		e->orientation.orientation_perso = e->map.tab_map[i][j];

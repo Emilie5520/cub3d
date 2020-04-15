@@ -52,7 +52,7 @@ void	ft_swap_sprite(t_env *e)
 void	ft_get_color(t_env *e, int i)
 {
 	if (e->sprite[i].image.get_data[e->spt.tex_x + e->spt.tex_y
-			* e->sprite[i].image.w] != -16777216)
+			* e->sprite[i].image.w] != 0)
 		e->sprite[i].image.color = e->sprite[i].image.get_data
 			[e->spt.tex_x + e->spt.tex_y * e->sprite[i].image.w];
 	else

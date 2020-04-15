@@ -16,7 +16,7 @@ void	ft_parsing_read(t_env *e)
 {
 	if (ft_check_identifiants(e) == 0)
 	{
-		printf("Error\nmap");
+		ft_putstr("Error\nmap");
 		ft_exit(e);
 	}
 	ft_recup_map_2(e);

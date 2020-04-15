@@ -6,7 +6,7 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:18:14 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 15:42:27 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/04/11 09:25:14 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ char				*ft_strjoin_free(char *s1, char *s2);
 float				ft_power(float nb, int power);
 void				ft_swap(int *a, int *b);
 void				ft_strdel(char **as);
+char				*ft_putstr(char *str);
 
 #endif

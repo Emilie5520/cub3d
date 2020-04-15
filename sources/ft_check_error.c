@@ -6,12 +6,11 @@
 /*   By: edouvier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 12:08:51 by edouvier          #+#    #+#             */
-/*   Updated: 2020/02/25 11:44:40 by edouvier         ###   ########.fr       */
+/*   Updated: 2020/04/11 10:01:33 by edouvier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <stdio.h>
+#include "../includes/cub3d.h"
 
 void	ft_check_wall_next(t_env *e)
 {
@@ -24,7 +23,7 @@ void	ft_check_wall_next(t_env *e)
 	{
 		if (e->map.tab_map[j][i] != '1')
 		{
-			printf("Error map\nOnly 13 on the edges of your map");
+			ft_putstr("Error map\nOnly 13 on the edges of your map");
 			ft_exit(e);
 		}
 		i++;
@@ -35,7 +34,7 @@ void	ft_check_wall_next(t_env *e)
 	{
 		if (e->map.tab_map[j][i] != '1')
 		{
-			printf("Error map\nOnly 14 on the edges of your map");
+			ft_putstr("Error map\nOnly 14 on the edges of your map");
 			ft_exit(e);
 		}
 		j++;
@@ -51,7 +50,7 @@ void	ft_check_wall(t_env *e)
 	{
 		if (e->map.tab_map[0][i] != '1')
 		{
-			printf("Error map\nOnly 1 on the edges of your map");
+			ft_putstr("Error map\nOnly 1 on the edges of your map");
 			ft_exit(e);
 		}
 		i++;
@@ -61,7 +60,7 @@ void	ft_check_wall(t_env *e)
 	{
 		if (e->map.tab_map[i][0] != '1')
 		{
-			printf("Error map\nOnly 1 on the edges of your map");
+			ft_putstr("Error map\nOnly 1 on the edges of your map");
 			ft_exit(e);
 		}
 		i++;
@@ -77,7 +76,7 @@ void	ft_check_resolution(t_env *e)
 		e->axes.axe_y = 1440;
 	if (e->axes.axe_x <= 0 || e->axes.axe_y <= 0)
 	{
-		printf("Error\nResolution <= 0");
+		ft_putstr("Error\nResolution <= 0");
 		ft_exit(e);
 	}
 }
@@ -112,7 +111,7 @@ void	ft_check_color(t_env *e, char *line, int i)
 	ft_space(line, &i);
 	j -= line[i] != '\0' ? 1 : 0;
 	if (j != 5)
-		printf("Error\nWrong color");
+		ft_putstr("Error\nWrong color");
 	if (j != 5)
 		ft_exit(e);
 }
